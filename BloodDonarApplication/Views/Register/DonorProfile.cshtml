@@ -1,0 +1,99 @@
+﻿@model BloodDonarApplication.BloodDonationModal.Registertbl
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "DonorProfile";
+    ViewBag.Id = @HttpContextAccessor.HttpContext.Session.GetInt32("id");
+}
+
+<h3 style="color: red; font-family: Harlow Solid; color: black; text-align: center;">Profile</h3>
+
+<hr />
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="col-md-10" style="margin-left: 60%; margin-right: auto; background-color: #0a3452; padding: 20px; border-radius: 5px; color: white; font-family: Calibri; font-size: large; border: 2px solid">
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <th>City</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(model => model.UserName)</td>
+                    </tr>
+                    <tr>
+                        <th>Hospital</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(model => model.Mobile)</td>
+                    </tr>
+                    <tr>
+                        <th>Blood group</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(model => model.Bloodgroup)</td>
+                    </tr>
+                    <tr>
+                        <th>Required before &nbsp;&nbsp;</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(model => model.City)</td>
+                    </tr>
+                    <tr>
+                        <th> </th>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <th> </th>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><a asp-action="EditDonars" asp-route-id="@ViewBag.Id"><button class="btn btn-primary" style="box-shadow: none;">Edit Profile</button></a></td>
+                        @*<td><a asp-action="DeleteDonors" asp-route-id="@ViewBag.Id"><button class="btn btn-primary" onclick="return confirm('Are you sure you want to delete this record?')">Back</button></a></td>
+                        <td></td>*@
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div class="text-center">
+        <h4>Registertbl</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Mobile)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Mobile)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Bloodgroup)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Bloodgroup)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.City)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+        </dl>
+    </div>*@
+@*<div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@

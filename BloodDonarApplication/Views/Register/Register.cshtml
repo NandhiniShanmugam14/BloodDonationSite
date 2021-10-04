@@ -1,0 +1,78 @@
+﻿@model BloodDonarApplication.BloodDonationModal.Registertbl
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<body>
+    <br />
+    <h1 class="text-center" style="font-family: Harlow Solid; color: black; text-decoration: underline;">Register to donate</h1><br />
+    <form asp-action="Register">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="col-md-10" style="margin-left: 60%; margin-right: 60%; background-color: #0a3452; padding: 20px; border-radius: 5px; color: white; font-family: Calibri; font-size: large; border: 2px solid ">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="UserName" class="control-label"></label>
+                        <input asp-for="UserName" class="form-control" placeholder="Enter name"/>
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Mobile" class="control-label"></label>
+                        <input asp-for="Mobile" class="form-control" placeholder="Enter mobile number"/>
+                        <span asp-validation-for="Mobile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Bloodgroup" class="control-label"></label>
+                        <select asp-for="Bloodgroup" class="form-control">
+                            <option>Select blood group</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="A1+">A1+</option>
+                            <option value="A1-">A1-</option>
+                            <option value="A1B+">A1B+</option>
+                            <option value="A1B-">A1B-</option>
+                            <option value="A2+">A2+</option>
+                            <option value="A2-">A2-</option>
+                            <option value="A2B+">A2B+</option>
+                            <option value="A2B-">A2B-</option>
+                        </select>
+                        <span asp-validation-for="Bloodgroup" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control" placeholder="Select city"/>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter password"/>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group text-center">
+                        <input type="submit" value="Register" class="btn btn-primary" />
+                    </div><br />
+                    <div class="form-group text-center">
+                        <p>Already have an account?&nbsp;&nbsp;&nbsp;<a asp-action="Login" style="color: white;">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

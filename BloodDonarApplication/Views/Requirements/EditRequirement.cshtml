@@ -1,0 +1,110 @@
+﻿@model BloodDonarApplication.BloodDonationModal.Requirementstbl
+
+@{
+    ViewData["Title"] = "EditRequirement";
+}
+
+<body>
+    <br />
+    <h1 class="text-center" style="font-family: Harlow Solid; color: black; text-decoration: underline;">Edit your Requirements</h1><br />
+    <form asp-action="EditRequirement">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-10" style="margin-left: auto; margin-right: auto; background-color: #0a3452; padding: 20px; border-radius: 5px; border: 5px; color: white;">
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Bloodgroup" class="control-label"></label>
+                        <select asp-for="Bloodgroup" class="form-control">
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="A1+">A1+</option>
+                            <option value="A1-">A1-</option>
+                            <option value="A1B+">A1B+</option>
+                            <option value="A1B-">A1B-</option>
+                            <option value="A2+">A2+</option>
+                            <option value="A2-">A2-</option>
+                            <option value="A2B+">A2B+</option>
+                            <option value="A2B-">A2B-</option>
+                        </select>
+                        <span asp-validation-for="Bloodgroup" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Units" class="control-label"></label>
+                        <input asp-for="Units" class="form-control" />
+                        <span asp-validation-for="Units" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Reqbefore" class="control-label"></label>
+                        <input asp-for="Reqbefore" class="form-control" />
+                        <span asp-validation-for="Reqbefore" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Reason" class="control-label"></label>
+                        <input asp-for="Reason" class="form-control" />
+                        <span asp-validation-for="Reason" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Hospital" class="control-label"></label>
+                        <input asp-for="Hospital" class="form-control" />
+                        <span asp-validation-for="Hospital" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-10" style="margin-left: auto; margin-right: auto; background-color: #0a3452; padding: 20px; border-radius: 5px; border: 5px; color: white;">
+                    <div class="form-group">
+                        <label asp-for="Patientname" class="control-label"></label>
+                        <input asp-for="Patientname" class="form-control" />
+                        <span asp-validation-for="Patientname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Patientage" class="control-label"></label>
+                        <input asp-for="Patientage" class="form-control" />
+                        <span asp-validation-for="Patientage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Patientgender" class="control-label"></label>
+                        <input asp-for="Patientgender" class="form-control" />
+                        <span asp-validation-for="Patientgender" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contactperson" class="control-label"></label>
+                        <input asp-for="Contactperson" class="form-control" />
+                        <span asp-validation-for="Contactperson" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Mobile" class="control-label"></label>
+                        <input asp-for="Mobile" class="form-control" />
+                        <span asp-validation-for="Mobile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group text-center">
+                <input type="submit" value="Save Changes" class="btn btn-primary" />
+        </div>
+    </form>
+</body>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

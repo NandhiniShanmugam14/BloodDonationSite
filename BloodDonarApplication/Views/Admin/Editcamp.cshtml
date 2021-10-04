@@ -1,0 +1,42 @@
+﻿@model BloodDonarApplication.BloodDonationModal.Blooddonationcamp
+
+@{
+    ViewData["Title"] = "Editcamp";
+}
+
+<body>
+    <br />
+    <h1 class="text-center" style="font-family: Harlow Solid; color: black">Edit Camp</h1><br />
+    <form asp-action="Editcamp">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-10" style="margin-left: 60%; margin-right: auto; background-color: #0a3452; padding: 20px; border-radius: 5px; color: white; font-family: Calibri; font-size: large; border: 2px solid ">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Dateofcamp" class="control-label"></label>
+                        <input asp-for="Dateofcamp" type="date" class="form-control" />
+                        <span asp-validation-for="Dateofcamp" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Venue" class="control-label"></label>
+                        <input asp-for="Venue" class="form-control" />
+                        <span asp-validation-for="Venue" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Timing" class="control-label"></label>
+                        <input asp-for="Timing" class="form-control" />
+                        <span asp-validation-for="Timing" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

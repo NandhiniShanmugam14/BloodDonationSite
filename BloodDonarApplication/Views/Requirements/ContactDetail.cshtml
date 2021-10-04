@@ -1,0 +1,92 @@
+﻿@model BloodDonarApplication.BloodDonationModal.Requirementstbl
+
+@{
+    ViewData["Title"] = "ContactDetail";
+}
+
+<head>
+
+</head>
+<body>
+    <h1 class="text-center" style="font-family: Harlow Solid; color: black">Post your Requirements</h1>
+<br />
+
+<hr />
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="col-md-10" style="margin-left: 60%; margin-right: 60%; background-color: #0a3452; padding: 20px; border-radius: 5px; color: white; font-family: Calibri; font-size: large; border: 2px solid ">
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <th>City</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(modelItem => Model.City)</td>
+                    </tr>
+                    <tr>
+                        <th>Hospital</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(modelItem => Model.Hospital)</td>
+                    </tr>
+                    <tr>
+                        <th>Blood group</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(modelItem => Model.Bloodgroup)</td>
+                    </tr>
+                    <tr>
+                        <th>Required before &nbsp;&nbsp;</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(modelItem => Model.Reqbefore)</td>
+                    </tr>
+                    <tr>
+                        <th>Reason</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(modelItem => Model.Reason)</td>
+                    </tr>
+                    <tr>
+                        <th>Patient name</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(modelItem => Model.Patientname)</td>
+                    </tr>
+                    <tr>
+                        <th>Patient age</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(modelItem => Model.Patientage)</td>
+                    </tr>
+                    <tr>
+                        <th>Patient gender</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(modelItem => Model.Patientgender)</td>
+                    </tr>
+                    <tr>
+                        <th>Contact person</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(modelItem => Model.Contactperson)</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(modelItem => Model.Mobile)</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>:</td>
+                        <td>@Html.DisplayFor(modelItem => Model.Email)</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><a asp-action="ViewRequirement"><button class="btn btn-primary" style="box-shadow: none;">Back</button></a></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,13 @@
+https://github.com/Shrivalli/fileuploadcore.git
+
+http://blooddonors.in/index.php
+
+https://www.redcrossblood.org/donate-blood/how-to-donate/eligibility-requirements.html
+
+https://looka.com/editor/73248400
+
+<img src="@Url.Content(item.Pimage)" alt="no data" height="200" width="200"/>
+from Shrivalli Maheshwaran to everyone:    1:07 PM
+https://www.c-sharpcorner.com/article/upload-and-display-image-in-asp-net-core-3-1/
+
+https://github.com/Shrivalli/imagedemo.git

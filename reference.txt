@@ -1,0 +1,185 @@
+@model BloodDonarApplication.BloodDonationModal.Registertbl
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<body>
+    <br />
+    <h1 class="text-center" style="font-family: Calibri">Register to donate</h1><br />
+    <form asp-action="Register">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="col-md-10" style="margin-left: 60%;margin-right: 60%;background-color: #f6f6f6;padding: 20px;border-radius: 5px;border:5px;">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="UserName" class="control-label"></label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Mobile" class="control-label"></label>
+                        <input asp-for="Mobile" class="form-control" />
+                        <span asp-validation-for="Mobile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Bloodgroup" class="control-label"></label>
+                        <select asp-for="Bloodgroup" class="form-control">
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="A1+">A1+</option>
+                            <option value="A1-">A1-</option>
+                            <option value="A1B+">A1B+</option>
+                            <option value="A1B-">A1B-</option>
+                            <option value="A2+">A2+</option>
+                            <option value="A2-">A2-</option>
+                            <option value="A2B+">A2B+</option>
+                            <option value="A2B-">A2B-</option>
+                        </select>
+                        <span asp-validation-for="Bloodgroup" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group text-center">
+                        <input type="submit" value="Register" class="btn btn-primary" />
+                    </div><br />
+                    <div class="form-group text-center">
+                        <p>Already have an account?&nbsp;&nbsp;&nbsp;<a asp-action="Login">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+@using Microsoft.AspNetCore.Http
+        @using System.Linq
+        @inject IHttpContextAccessor HttpContextAccessor
+        @*@model BloodDonarApplication.BloodDonationModal.Registertbl*@
+        <div class="topnav" id="myTopnav">
+            <a class="navbar-brand" asp-area="" asp-controller="Register" asp-action="SearchDonors"><img src="/images/logo.png" width="110px" style="max-width: 100%; display: block; height: auto; border-radius: 10px; border: 1px solid black;"></a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="SearchDonors">Home</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Requirements" asp-action="ViewRequirement">Post your Requirements</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Eligibility">Eligibility</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Viewcamp">View Camp</a>
+
+            @{
+                ViewBag.Id = @HttpContextAccessor.HttpContext.Session.GetInt32("id");
+                ViewBag.Data = @HttpContextAccessor.HttpContext.Session.GetString("username");
+            }
+            @if (ViewBag.Data != null)
+            {
+                if (ViewBag.Data == "Admin")
+                {
+                    <a id="manage" class="nav-link text-dark" title="Manage" style="padding-left: 200px;">Hello @ViewBag.Data!</a>
+                }
+                else
+                {
+                    <a id="manage" class="nav-link text-dark" asp-controller="Register" asp-action="DonorProfile" asp-route-id="@ViewBag.Id" title="Manage" style="padding-left: 200px;">Hello @ViewBag.Data!</a>
+                }
+
+                <form id="logoutForm" class="form-inline" asp-controller="Register" asp-action="Logout" asp-route-returnUrl="@Url.Action("Register", "SearchDonors", new { area = "" })">
+                    <input type="submit" value="Logout" id="logout" onclick="return confirm('Are you sure you want to logout??')" class="nav-link btn btn-link text-dark" style="margin-right: 10%;" />
+                </form>
+
+            }
+            else
+            {
+                <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Register">Donate Now</a>
+            }
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - BloodDonarApplication
+        </div>
+    </footer>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+<div class="topnav" id="myTopnav">
+                <a class="navbar-brand" asp-area="" asp-controller="Register" asp-action="SearchDonors"><img src="/images/logo.png" width="110px" style="max-width: 100%; display: block; height: auto; border-radius: 10px; border: 1px solid black;"></a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="SearchDonors">Home</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Requirements" asp-action="ViewRequirement">Post your Requirements</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Eligibility">Eligibility</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Viewcamp">View Camp</a>
+
+                @{
+                    ViewBag.Id = @HttpContextAccessor.HttpContext.Session.GetInt32("id");
+                    ViewBag.Data = @HttpContextAccessor.HttpContext.Session.GetString("username");
+                }
+                @if (ViewBag.Data != null)
+                {
+                    if (ViewBag.Data == "Admin")
+                    {
+                        <a id="manage" class="nav-link text-dark" title="Manage" style="padding-left: 200px;">Hello @ViewBag.Data!</a>
+                    }
+                    else
+                    {
+                        <a id="manage" class="nav-link text-dark" asp-controller="Register" asp-action="DonorProfile" asp-route-id="@ViewBag.Id" title="Manage" style="padding-left: 200px;">Hello @ViewBag.Data!</a>
+                    }
+
+                    <form id="logoutForm" class="form-inline" asp-controller="Register" asp-action="Logout" asp-route-returnUrl="@Url.Action("Register", "SearchDonors", new { area = "" })">
+                        <input type="submit" value="Logout" id="logout" onclick="return confirm('Are you sure you want to logout??')" class="nav-link btn btn-link text-dark" style="margin-right: 10%;" />
+                    </form>
+
+                }
+                else
+                {
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Register">Donate Now</a>
+                }
+
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+
+            </div>

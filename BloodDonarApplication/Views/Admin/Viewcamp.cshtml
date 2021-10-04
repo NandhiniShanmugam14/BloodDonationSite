@@ -1,0 +1,92 @@
+﻿@model IEnumerable<BloodDonarApplication.BloodDonationModal.Blooddonationcamp>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Viewcamp";
+    ViewBag.Data = @HttpContextAccessor.HttpContext.Session.GetString("username");
+}
+<style>
+    #camptable {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #camptable td, #camptable th {
+        border: 1px solid black;
+        padding: 8px;
+        color: black;
+    }
+
+    /*#searchtable tr:nth-child(even) {
+    background-color: #fff7f8;
+    }*/
+
+    #camptable tr:hover {
+        background-color: #ddd;
+    }
+
+    #camptable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #0a3452;
+        color: white;
+    }
+</style>
+
+<h1 class="text-center" style="font-family: Harlow Solid; color: black; text-decoration: underline;">View Camp</h1>
+<br />
+@if (ViewBag.Data == "Admin")
+{
+    <h1 class="text-center">
+        <a asp-action="AddCamp" style="color: black; font-family: Harlow Solid; text-decoration: underline;">Add New Camp</a>
+    </h1>
+}
+<br />
+<table id="camptable">
+    <thead>
+        <tr>
+            <th>
+                <label class="control-label">Data of Camp</label>
+                @*@Html.DisplayNameFor(model => model.Dateofcamp)*@
+            </th>
+            <th>
+                <label class="control-label">Venue</label>
+                @*@Html.DisplayNameFor(model => model.Venue)*@
+            </th>
+            <th>
+                <label class="control-label">Timing</label>
+                @*@Html.DisplayNameFor(model => model.Timing)*@
+            </th>
+            @if (ViewBag.Data == "Admin")
+            {
+                <th></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dateofcamp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Venue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Timing)
+                </td>
+
+                @if (ViewBag.Data == "Admin")
+                {
+                    <td>
+                        <a asp-action="Editcamp" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                        <a asp-action="Deletecamp" asp-route-id="@item.Id"><i class="fa fa-trash-o" style="font-size: 20px;" onclick="return confirm('Are you sure you want to delete this record?')"></i></a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<BloodDonarApplication.BloodDonationModal.Requirementstbl>
+
+@{
+    ViewData["Title"] = "ViewRequirement";
+}
+
+<br />
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #reqtable {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #reqtable td, #reqtable th {
+            border: 1px solid black;
+            padding: 8px;
+            color: black;
+        }
+
+        /*#searchtable tr:nth-child(even) {
+        background-color: #fff7f8;
+    }*/
+
+        #reqtable tr:hover {
+            background-color: #ddd;
+        }
+
+        #reqtable th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #0a3452;
+            color: white;
+        }
+    </style>
+</head>
+<div>
+    <h1 class="text-center">
+        <a asp-action="AddRequirement" style="color: black; font-family: Harlow Solid; text-decoration: underline;">Post Your Requirements</a>
+    </h1>
+</div>
+<br />
+<br />
+<div>
+    <h3 class="text-center" style="color: red">
+        Following Blood Required
+    </h3>
+</div>
+<br />
+<br />
+<table id="reqtable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bloodgroup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Units)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hospital)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patientage)
+            </th>
+            <th>Contact</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bloodgroup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Units)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reason)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hospital)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patientage)
+                </td>
+                <td>
+                    <a asp-action="ContactDetail" asp-route-id="@item.Id">Details</a>
+                    @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                </td>
+                <td>
+                    <a asp-action="EditRequirement" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a> |
+                    <a asp-action="DeleteRequirement" asp-route-id="@item.Id"><i class="fa fa-trash-o" style="font-size: 20px;" onclick="return confirm('Are you sure you want to delete this record?')"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

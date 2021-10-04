@@ -1,0 +1,46 @@
+﻿@model BloodDonarApplication.BloodDonationModal.Registertbl
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<body>
+    <br />
+    <h1 class="text-center" style="font-family: Harlow Solid; color: black">Login</h1><br />
+    <form asp-action="Login">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-10" style="margin-left: 60%; margin-right: 60%; background-color: #0a3452; padding: 20px; border-radius: 5px; color: white; font-family: Calibri; font-size: large; border: 2px solid ">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="UserName" class="control-label"></label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div><br />
+                    <div class="form-group text-center">
+                        <input type="submit" value="Login" class="btn btn-primary" />
+                    </div>
+                    @if (ViewBag.Message != null)
+                    {
+                        <script type="text/javascript">
+                    window.onload = function () {
+                        alert("@ViewBag.Message");
+                    };
+                        </script>
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

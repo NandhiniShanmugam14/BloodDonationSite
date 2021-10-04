@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BloodDonarApplication</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f5fbff;
+            color: #9baacf;
+            font-family: 'Maven Pro', sans-serif;
+            text-rendering: optimizeLegibility;
+            font-size: 16px;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            box-shadow: inset 0.2rem 0.2rem 0.5rem #d7edfc, inset -0.2rem -0.2rem 0.5rem #d7edfc, 0.3rem 0.3rem 0.5rem #d7edfc, -0.2rem -0.2rem 0.4rem #d7edfc;
+            border-radius: 20px;
+            margin: 1rem;
+            padding: 1rem;
+            border: 1px solid black;
+        }
+        .navLogo {
+            border-radius: 10px;
+            padding: 1em;
+            letter-spacing: 5px;
+            box-shadow: inset 0.3rem 0.3rem 0.5rem #d7edfc, inset -0.2rem -0.2rem 0.4rem #d7edfc;
+            background: rgba(1, 255, 137, 0.1);
+            text-shadow: seagreen 5px 2px 5px;
+            font-weight: 900;
+            font-size: 15px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border: 1px solid black;
+        }
+        .navLogo {
+            display: flex;
+            justify-content: space-between;
+        }
+        .navLogo i {
+            display: none;
+        }
+        .navItems {
+            display: flex;
+        }
+            .navItems a, button {
+                text-decoration: none;
+                border-radius: 10px;
+                padding: 12px;
+                display: block;
+                margin: 0 10px;
+                justify-content: space-between;
+                box-shadow: 0.3rem 0.3rem 0.5rem #d7edfc, -0.2rem -0.2rem 0.4rem #d7edfc;
+                border: 1px solid black;
+                color: black;
+            }
+        .navItems a:hover {
+            box-shadow: inset 0.3rem 0.3rem 0.5rem rgba(195, 193, 198, 0.9), inset -0.2rem -0.2rem 0.4rem #f0f2f5;
+        }
+        @@media screen and (max-width:700px) {
+            .nav, .navItems, .navLogo {
+                display: block;
+            }
+            .navItems {
+                margin: 30px;
+                display: none;
+            }
+            .navItems a {
+                margin: 15px 0;
+            }
+            .navLogo {
+                display: flex;
+                justify-content: space-between;
+            }
+            .navLogo i {
+                display: block;
+            }
+            .block {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        @using Microsoft.AspNetCore.Http
+        @using System.Linq
+        @inject IHttpContextAccessor HttpContextAccessor
+
+        <section class="navBar">
+            <div class="nav">
+
+                <div class="navLogo  maintitle neumorphic outset  text-dark">
+                    RED BAR
+                    @*<img src="/images/logo.png" height="20px" width="100px"/>*@
+                    @*<a class="navbar-brand" asp-area="" asp-controller="Register" asp-action="SearchDonors"><img src="/images/logo.png" width="100px" style=" display: block; height: auto; border-radius: 10px; border: 1px solid black;"></a>*@
+                    
+
+                    <i onclick="tog();" class="fa fa-car"></i>
+                </div>
+
+
+                <div class="navItems" id="navItems">
+                    <div class="home"><a class="nav-link" asp-area="" asp-controller="Register" asp-action="SearchDonors">Home</a></div>
+                    <div class="requirements"><a class="nav-link" asp-area="" asp-controller="Requirements" asp-action="ViewRequirement">Post your Requirements</a></div>
+                    <div class="eligibility"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Eligibility">Eligibility</a></div>
+                    <div class="camp"><a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Viewcamp">View Camp</a></div>
+
+                    @{
+                        ViewBag.Id = @HttpContextAccessor.HttpContext.Session.GetInt32("id");
+                        ViewBag.Data = @HttpContextAccessor.HttpContext.Session.GetString("username");
+                    }
+                    @if (ViewBag.Data != null)
+                    {
+                        if (ViewBag.Data == "Admin")
+                        {
+                            <div class="welcome"><a id="manage" class="nav-link" title="Manage" style="color: black;">Hello @ViewBag.Data!</a></div>
+
+                        }
+                        else
+                        {
+                            <div class="welcome"><a id="manage" class="nav-link" asp-controller="Register" asp-action="DonorProfile" asp-route-id="@ViewBag.Id" title="Manage">Hello @ViewBag.Data!</a></div>
+                            
+                        }
+
+                        <form id="logoutForm" class="form-inline" asp-controller="Register" asp-action="Logout" asp-route-returnUrl="@Url.Action("Register", "SearchDonors", new { area = "" })">
+                            @*<div class="logout"><a type="submit" class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Register" onclick="return confirm('Are you sure you want to logout??')">Logout</a></div>*@
+                            <div class="logout"><button type="submit" id="logout" onclick="return confirm('Are you sure you want to logout??')" class="nav-link" style="margin-right: 10%; padding: 12px; margin: 0 10px; justify-content: space-between; border: 1px solid black; background: none; ">Logout</button></div>
+                        </form>
+
+                    }
+                    else
+                    {
+                        <div class="contact"><a class="nav-link" asp-area="" asp-controller="Register" asp-action="Register">Donate Now</a></div>
+                    }
+
+
+                </div>
+            </div>
+        </section>
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - BloodDonarApplication
+        </div>
+    </footer>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+    <script>
+        function tog() {
+            var x = document.getElementById('navItems');
+            x.classList.toggle('block')
+        }
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

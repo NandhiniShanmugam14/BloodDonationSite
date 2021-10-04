@@ -1,0 +1,37 @@
+﻿
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<ul class="navbar-nav">
+    @{
+        ViewBag.Id = @HttpContextAccessor.HttpContext.Session.GetInt32("id");
+        ViewBag.Data = @HttpContextAccessor.HttpContext.Session.GetString("username");
+    }
+    @if (ViewBag.Data != null)
+    {
+        if (ViewBag.Data == "Admin")
+        {
+            <a id="manage" class="nav-link text-dark" title="Manage" style="padding-left: 200px;">Hello @ViewBag.Data!</a>
+        }
+        else
+        {
+            <a id="manage" class="nav-link text-dark" asp-controller="Register" asp-action="DonorProfile" asp-route-id="@ViewBag.Id" title="Manage" style="padding-left: 200px;">Hello @ViewBag.Data!</a>
+        }
+
+        <form id="logoutForm" class="form-inline" asp-controller="Register" asp-action="Logout" asp-route-returnUrl="@Url.Action("Register", "SearchDonors", new { area = "" })">
+            <input type="submit" value="Logout" id="logout" onclick="return confirm('Are you sure you want to logout??')" class="nav-link btn btn-link text-dark" style="margin-right: 10%;" />
+        </form>
+
+    }
+    else
+    {
+        <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Register">Donate Now</a>
+        @*<li class="nav-item">
+                <a class="nav-link text-dark" id="register" asp-controller="Users" asp-action="Create">Register</a>
+                @Html.ActionLink("Register", "Create", "Users")
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="login" asp-controller="Login" asp-action="Login">Login</a>
+            </li>*@
+    }
+</ul>

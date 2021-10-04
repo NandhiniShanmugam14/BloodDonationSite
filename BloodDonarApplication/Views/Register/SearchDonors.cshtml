@@ -1,0 +1,136 @@
+﻿@*@using PagedList;
+@using PagedList.Mvc;*@
+
+@model IEnumerable<BloodDonarApplication.BloodDonationModal.Registertbl>
+
+@{
+    ViewData["Title"] = "SearchDonors";
+}
+
+<head>
+    <style>
+        table, tr, th, td {
+            border: 1px solid black;
+        }
+        #searchtable {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #searchtable td, #searchtable th {
+            border: 1px solid black;
+            padding: 8px;
+            color:black;
+        }
+
+        /*#searchtable tr:nth-child(even) {
+            background-color: #fff7f8;
+        }*/
+
+        #searchtable tr:hover {
+            background-color: #ddd;
+        }
+
+        #searchtable th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #0a3452;
+            color: white;
+        }
+    </style>
+</head>
+
+
+<body>
+    <br />
+    <h1 class="text-center" style="font-family: Harlow Solid; color: black; text-decoration: underline;">Search Donors</h1><br />
+    <form class="example" asp-action="SearchDonors" asp-controller="Register" method="get" style="align-content: center;">
+        <div class="row" style="background-color: #0a3452; font-family: Calibri; font-size: large; border: 2px solid black; color: white; ">
+            <div class="col-md-6">
+                <div class="col-md-10" style="margin-left: auto;margin-right: auto; padding: 20px;border-radius: 5px;border:5px;">
+                    <div class="form-group">
+                        <label class="control-label">Cities</label>
+                        <input class="form-control" name="searching" placeholder="Enter city"/>
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-10" style="margin-left: auto;margin-right: auto; padding: 20px;border-radius: 5px;border:5px;">
+                    <div class="form-group">
+                        <label class="control-label">Blood Group</label>
+                        <select name="searching1" class="form-control">
+                            <option>Select blood group</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="A1+">A1+</option>
+                            <option value="A1-">A1-</option>
+                            <option value="A1B+">A1B+</option>
+                            <option value="A1B-">A1B-</option>
+                            <option value="A2+">A2+</option>
+                            <option value="A2-">A2-</option>
+                            <option value="A2B+">A2B+</option>
+                            <option value="A2B-">A2B-</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group text-center">
+            <input type="submit" value="Search" class="btn btn-primary" id="search"/>
+        </div>
+    </form>
+
+    <br />
+    <hr />
+    <br />
+    <br />
+    
+    <table id="searchtable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mobile)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bloodgroup)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mobile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bloodgroup)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*@Html.PagedListPager(Model, page => Url.Action("SearchDonors", new { page }))*@
+</body>
